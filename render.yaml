@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: spirit-api
+    env: node
+    plan: free
+    branch: main
+    rootDir: .
+    buildCommand: npm install
+    startCommand: node server.js
+    autoDeploy: true
+    region: oregon
+    runtime: node
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
