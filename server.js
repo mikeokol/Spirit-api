@@ -103,3 +103,14 @@ app.post("/v1/spirit", async (req, res) => {
 
 // ---------- START SERVER ----------
 app.listen(PORT, () => console.log(`⚡ Spirit API v3 running on port ${PORT}`));
+import { logReflection, getReflections } from "./reflection.js";
+
+app.post("/v1/reflection/log", async (req, res) => {
+  const result = await logReflection(req.body);
+  res.json(result);
+});
+
+app.get("/v1/reflection/all", async (req, res) => {
+  const result = await getReflections();
+  res.json(result);
+});
