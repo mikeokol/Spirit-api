@@ -1,3 +1,4 @@
+
 // 🌟 Spirit API v3 — Scalable, Secure, Modular
 
 import express from "express";
@@ -7,6 +8,7 @@ import fetch from "node-fetch";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import rateLimit from "express-rate-limit";
+import { logReflection, getReflections } from "./reflection.js"; // ← move here
 
 dotenv.config();
 const app = express();
@@ -101,10 +103,7 @@ app.post("/v1/spirit", async (req, res) => {
   }
 });
 
-// ---------- START SERVER ----------
-app.listen(PORT, () => console.log(`⚡ Spirit API v3 running on port ${PORT}`));
-import { logReflection, getReflections } from "./reflection.js";
-
+// ---------- REFLECTION MODE ROUTES ----------
 app.post("/v1/reflection/log", async (req, res) => {
   const result = await logReflection(req.body);
   res.json(result);
@@ -114,3 +113,6 @@ app.get("/v1/reflection/all", async (req, res) => {
   const result = await getReflections();
   res.json(result);
 });
+
+// ---------- START SERVER ----------
+app.listen(PORT, () => console.log(`⚡ Spirit API v3 running on port ${PORT}`));
