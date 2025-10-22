@@ -115,3 +115,5 @@ app.get("/v1/reflection/all", async (req, res) => {
 
 // ---------- START SERVER ----------
 app.listen(PORT, () => console.log(`⚡ Spirit API v3 running on port ${PORT}`));
+import reflectionRouter from "./routes/reflectionRouter.js";
+app.use("/reflections", reflectionRouter);
